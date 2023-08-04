@@ -174,7 +174,8 @@ class BudgetDetailViewController: UIViewController {
         stackView.axis = .vertical
         stackView.spacing = UIStackView.spacingUseSystem
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
+        stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         
         stackView.addArrangedSubview(amountLabel)
         stackView.setCustomSpacing(50, after: amountLabel)
@@ -183,22 +184,25 @@ class BudgetDetailViewController: UIViewController {
         stackView.addArrangedSubview(saveTransactionButton)
         stackView.addArrangedSubview(errorMessageLabel)
         stackView.addArrangedSubview(transactionsTotalLabel)
-        stackView.addArrangedSubview(tableView)
-        
         view.addSubview(stackView)
+        view.addSubview(tableView)
         
         // add constraints
-        nameTextField.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        amountTextField.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        saveTransactionButton.centerXAnchor.constraint(equalTo: stackView.centerXAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            saveTransactionButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+            saveTransactionButton.centerXAnchor.constraint(equalTo: stackView.centerXAnchor),
+        ])
+        
         saveTransactionButton.addTarget(self, action: #selector(saveTransactionButtonPressed), for: .touchUpInside)
         
-        stackView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        stackView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 1).isActive = true
+        view.trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 1).isActive = true
         stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         
-        tableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         tableView.heightAnchor.constraint(equalToConstant: 600).isActive = true
-        
+        tableView.topAnchor.constraint(equalTo: stackView.bottomAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
     }
     
 }
