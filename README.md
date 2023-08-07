@@ -13,7 +13,7 @@ O Budget App é um aplicativo iOS desenvolvido em Swift que permite aos usuário
 
 <br/>
 <div align="center">
-   <img src="https://github.com/KaduVuotto/near-me/blob/main/near-me.gif?raw=true" width="300" />
+   <img src="https://github.com/KaduVuotto/budget-app/blob/main/budget-app.gif" width="300" />
 </div>
 <br/>
 
